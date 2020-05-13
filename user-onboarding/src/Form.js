@@ -36,7 +36,7 @@ export default function Form(){
         terms: ""
     });
 
-    const[user, setUser] = useState({});
+    let [user, setUser] = useState([]);
 
     const validate = e => {
         yup
@@ -71,14 +71,12 @@ export default function Form(){
             .post("https://reqres.in/api/users", form)
             .then(response=> {
                 console.log(response);
-                setUser({name:response.data.name});
-                console.log(user);
             })
             .catch(err=> console.log(err));
+        setUser(old=>[...old, form]);
     }
-
     return(
-        <div>
+        <div className="form">
             <form onSubmit={formSubmit}>
                 <label htmlFor="name">
                     Name 
@@ -89,6 +87,7 @@ export default function Form(){
                         value = {form.name}
                         onChange={inputInfo}
                     />
+                    {errorState.name.length > 0 ? (<p className="error">{errorState.name}</p>) : null}
                 </label>
                 <label htmlFor="email">
                     Email 
@@ -99,6 +98,7 @@ export default function Form(){
                         value = {form.email}
                         onChange={inputInfo}
                     />
+                    {errorState.email.length > 0 ? (<p>className="error">{errorState.email}</p>) : null}
                 </label>
                 <label htmlFor="password">
                     Password
@@ -109,6 +109,7 @@ export default function Form(){
                         value = {form.password}
                         onChange={inputInfo}
                     />
+                    {errorState.password.length > 0 ? (<p className="error">{errorState.password}</p>) : null}
                 </label>
                 <label htmlFor="terms">
                      Terms of Service
@@ -119,22 +120,20 @@ export default function Form(){
                         value = {form.terms}
                         onChange={inputInfo}
                      />
+                     {errorState.terms !== true ? (<p className="error">{errorState.terms}</p>) : null}
                 </label>
                 <button>Submit</button>
-
-                <div>
-                    <h3>Users:</h3>
-                    <section>
-                        <div>
-                            <pre>
-                                
-                            </pre>
-                        </div>
-                    </section>
-                </div>
-                    
-                
             </form>
+            <div className="user">
+                <h3>Users:</h3>
+                <section>
+                    <div>
+                        {user.map((entry)=>{
+                            return (<pre>{entry.name}</pre>);
+                        })}
+                    </div>
+                </section>
+            </div>     
         </div>
     );
 }

@@ -36,3 +36,42 @@
     transform: rotate(360deg);
   }
 }
+.form{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+}
+form{
+  display:flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+input:hover{
+  border:1px solid blue;
+}
+input{
+  margin-left: 5px;
+}
+
+label{
+  width:80%;
+  margin: 5px;
+}
+/*label.terms{
+  display:flex;
+
+} */
+button{
+  margin-top:3%;
+  margin-left:26%;
+}
+.user{
+  width:50%;
+  margin-top:5%;
+  margin-right:5%;
+}
+.error{
+  color: red;
+  width:100%;
+}
