@@ -98,7 +98,7 @@ export default function Form(){
                         value = {form.email}
                         onChange={inputInfo}
                     />
-                    {errorState.email.length > 0 ? (<p>className="error">{errorState.email}</p>) : null}
+                    {errorState.email.length > 0 ? (<p className="error">{errorState.email}</p>) : null}
                 </label>
                 <label htmlFor="password">
                     Password
